@@ -1,0 +1,53 @@
+<h3 class="mt-5">Medici:</h3>
+<div class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto">
+  <input [(ngModel)]="firstName" placeholder="First Name" />
+  <input [(ngModel)]="lastName" placeholder="Last Name" />
+  <select [(ngModel)]="active" placeholder="Disponibilita">
+    <option value="">...</option>
+    <option value="true">disponibile</option>
+    <option value="false">Non disponibile</option>
+  </select>
+  <input [(ngModel)]="email" placeholder="Email" />
+
+  <button (click)="bottoneMedico()" class="btn">Submit</button>
+</div>
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">action</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Email</th>
+      <th scope="col">Disponibilità</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let medico of medici" [ngClass]="{'table-success': medico.active}">
+      <td>
+        <button class="btn" (click)="bottoneDeleteMedico(medico.medicoId)">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+      <td>
+        {{ medico.firstName }}
+      </td>
+      <td>
+        {{ medico.lastName }}
+      </td>
+      <td>
+        {{ medico.email }}
+      </td>
+      <td>
+        <button class="btn" (click)="isMedicoActive(medico)">
+          <ng-container *ngIf="medico.active; else inactiveMedico">
+            Disponibile
+          </ng-container>
+          <ng-template #inactiveMedico>
+            Medico non disponibile
+          </ng-template>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

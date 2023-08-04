@@ -1,0 +1,13 @@
+.btn{
+  background-color: #004bad;
+  color: white;
+}
+
+input, select{
+  border: 0px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+

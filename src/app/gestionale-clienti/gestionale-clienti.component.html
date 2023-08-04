@@ -1,0 +1,44 @@
+<h3 class="mt-5">Pazienti:</h3>
+<div class="text-center mt-4 d-flex flex-column w-25 gap-4 m-auto">
+  <input [(ngModel)]="firstName" placeholder="First Name" />
+  <input [(ngModel)]="lastName" placeholder="Last Name" />
+  <input [(ngModel)]="codiceFiscale" placeholder="Codice Fiscale" />
+  <input [(ngModel)]="email" placeholder="Email" />
+  <button (click)="bottonePaziente()" class="btn">Submit</button>
+</div>
+
+<table class="table table-striped mt-5">
+  <thead>
+    <tr>
+      <th scope="col">action</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Email</th>
+      <th scope="col">Codice Fiscale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let paziente of pazienti">
+      <td>
+        <button
+          class="btn"
+          (click)="bottoneDeletePaziente(paziente.pazienteId)"
+        >
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+      <td>
+        {{ paziente.firstName }}
+      </td>
+      <td>
+        {{ paziente.lastName }}
+      </td>
+      <td>
+        {{ paziente.email }}
+      </td>
+      <td>
+        {{ paziente.codiceFiscale }}
+      </td>
+    </tr>
+  </tbody>
+</table>

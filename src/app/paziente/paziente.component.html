@@ -1,0 +1,103 @@
+<div class="container">
+  <button class="btn mt-4 mb-5" routerLink="">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+
+  <div class="d-flex justify-content-center align-items-center gap-4">
+    <div>
+      <img src="../../assets/paziente.png" alt="" class="foto">
+    </div>
+    <div class="linea-verticale"></div>
+    <div>
+      <h4 class="fw-bold">Paziente:</h4>
+      <h2 class="fw-bold" style="color: #0060df;">
+        {{ this.pazienteSelezionato.firstName }}
+        {{ this.pazienteSelezionato.lastName }}
+      </h2>
+      <p>
+        {{this.pazienteSelezionato.email}}
+      </p>
+      <p>
+        {{this.pazienteSelezionato.codiceFiscale}}
+      </p>
+    </div>
+  </div>
+
+  <app-gestionale-prestazioni
+    (prenotazionePrestazione)="addPrestazione($event)"
+  ></app-gestionale-prestazioni>
+  <div></div>
+</div>
+
+<!-- Modal Add Appuntamento-->
+<div
+  class="modal fade"
+  id="exampleModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered text-white">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title text-dark  fs-5" id="staticBackdropLabel">
+          Prenota
+        </h1>
+      </div>
+      <div class="modal-body text-center">
+        <div class="mt-3">
+          <label class="">Orario</label> <br />
+          <input
+            [(ngModel)]="nuovoAppuntamento.orario"
+            type="text"
+            class="input"
+          />
+        </div>
+        <div class="mt-3">
+          <label class="">Data</label> <br />
+          <input
+            [(ngModel)]="nuovoAppuntamento.data"
+            type="text"
+            class="input"
+          />
+        </div>
+        <div class="mt-3">
+          <label class="">Ricetta Medica</label> <br />
+          <input
+            [(ngModel)]="nuovoAppuntamento.ricetta"
+            type="text"
+            class="input"
+          />
+        </div>
+        <div class="mt-3">
+          <button
+            (click)="bottonePostAppuntamento()"
+            type="button"
+            class="btn btn-success"
+          >
+            Prenota
+          </button>
+        </div>
+      </div>
+      <div class="modal-body d-flex flex-column align-items-center d-none">
+        <div
+          class="cerchio text-white d-flex align-items-center justify-content-center"
+        >
+          <div><i class="fa-solid fa-check"></i></div>
+        </div>
+        <div class="text-white pt-4">
+          <h4>Prenotato con successo!</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-gestionale-appuntamenti></app-gestionale-appuntamenti>

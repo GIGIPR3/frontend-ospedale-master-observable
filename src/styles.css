@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+
+body{
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+input{
+  border: none;
+  background-color: rgb(236, 236, 236);
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+button{
+  background-color: #0060df !important;
+  color: white !important;
+}
+
+select{
+  border: none;
+  background-color: rgb(236, 236, 236);
+  padding: 10px 10px;
+  border-radius: 10px;
+}

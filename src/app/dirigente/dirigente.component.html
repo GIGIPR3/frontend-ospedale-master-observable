@@ -1,0 +1,20 @@
+<div class="container">
+  <button class="btn mt-4" routerLink="">
+    <i class="fa-solid fa-arrow-left"></i>
+  </button>
+
+  <div class="w-100 mt-5 d-flex gap-2">
+    <input type="radio" class="btn-check" name="options-base" id="option1" autocomplete="off" checked routerLink="medici">
+    <label class="btn" for="option1">medici</label>
+    <input type="radio" class="btn-check" name="options-base" id="option2" autocomplete="off" checked routerLink="pazienti">
+    <label class="btn" for="option2">pazienti</label>
+    <input type="radio" class="btn-check" name="options-base" id="option3" autocomplete="off" checked routerLink="appuntamenti">
+    <label class="btn" for="option3">appuntamenti</label>
+    <input type="radio" class="btn-check" name="options-base" id="option4" autocomplete="off" checked routerLink="prestazioni">
+    <label class="btn" for="option4">prestazioni</label>
+    <input type="radio" class="btn-check" name="options-base" id="option5" autocomplete="off" checked routerLink="richieste">
+    <label class="btn" for="option5">richieste</label>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+

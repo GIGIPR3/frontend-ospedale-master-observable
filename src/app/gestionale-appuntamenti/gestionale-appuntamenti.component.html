@@ -1,0 +1,134 @@
+<!-- Modal edit Orario -->
+<div
+  class="modal fade"
+  id="OrarioModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title text-dark fs-5" id="staticBackdropLabel">
+          Modifica Orario
+        </h1>
+      </div>
+      <div class="modal-body text-center">
+        <div class="mt-3">
+          <label class="">Nuovo Orario</label> <br />
+          <input
+            [(ngModel)]="richiesta.nuovoOrario"
+            type="text"
+            class="input"
+          />
+        </div>
+        <div class="mt-3">
+          <label class="">Nuova Data</label> <br />
+          <input [(ngModel)]="richiesta.nuovaData" type="text" class="input" />
+        </div>
+        <div class="mt-3">
+          <button
+            (click)="bottoneModificaAppuntamento(selectedAppuntamentoId)"
+            type="button"
+            class="btn btn-success"
+          >
+            Modifica
+          </button>
+        </div>
+      </div>
+      <div class="modal-body d-flex flex-column align-items-center d-none">
+        <div
+          class="cerchio text-white d-flex align-items-center justify-content-center"
+        >
+          <div><i class="fa-solid fa-check"></i></div>
+        </div>
+        <div class=" pt-4">
+          <h4>Prenotato con successo!</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <h3>I Tuoi Appuntamenti:</h3>
+  <table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">data</th>
+        <th scope="col">orario</th>
+        <th scope="col">ricetta</th>
+        <th scope="col">completato</th>
+        <th scope="col">prestazione</th>
+        <th scope="col">medico</th>
+        <th scope="col">paziente</th>
+        <th scope="col" *ngIf="isMedicoActive">cancella appuntamento</th>
+        <th scope="col">modifica Orario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let appuntamento of appuntamenti"
+        [ngClass]="{ 'table-success': appuntamento.completato }"
+      >
+        <td>
+          {{ appuntamento.data }}
+        </td>
+        <td>
+          {{ appuntamento.orario }}
+        </td>
+        <td>
+          {{ appuntamento.ricetta }}
+        </td>
+        <td *ngIf="isMedicoActive; else completatoTd">
+          <button class="btn" type="button" (click)="completaAppuntamento(appuntamento!)">
+            <ng-container *ngIf="appuntamento.completato; else inactiveMedico">
+              Completato
+            </ng-container>
+            <ng-template #inactiveMedico>
+              Non Completato
+            </ng-template>
+          </button>
+        </td>
+        <ng-template #completatoTd>
+          <td>{{ appuntamento.completato }}</td>
+        </ng-template>
+        <td>
+          {{ appuntamento.prestazione?.tipologia }}
+        </td>
+        <td>
+          {{ appuntamento.prestazione?.medico?.firstName }}
+        </td>
+        <td>
+          {{ appuntamento.paziente?.firstName }}
+        </td>
+        <td *ngIf="isMedicoActive">
+          <button
+            type="button"
+            (click)="deleteAppuntamento(appuntamento.appuntamentoId!)" class="btn"
+          >
+            cancella
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#OrarioModal"
+            type="button"
+            (click)="openModal(appuntamento.appuntamentoId!)"
+          >
+            <i class="fa-solid fa-pen"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,49 @@
+
+<table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Accetta modifica</th>
+        <th scope="col">Prestazione</th>
+        <th scope="col">Medico</th>
+        <th scope="col">Paziente</th>
+        <th scope="col">Orario</th>
+        <th scope="col">Nuovo Orario</th>
+        <th scope="col">Data</th>
+        <th scope="col">Nuova Data</th>
+        <th scope="col">Invio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let richiesta of richieste">
+        <td>
+          <input _ngcontent-jwm-c7="" [(ngModel)]="richiesta.status" type="checkbox" data-toggle="toggle" class="ng-untouched ng-pristine ng-valid">
+        </td>
+        <td>
+          {{richiesta.appuntamento?.prestazione?.tipologia}}
+        </td>
+        <td>
+          {{richiesta.appuntamento?.prestazione?.medico?.firstName}}
+        </td>
+        <td>
+          {{richiesta.appuntamento?.paziente?.firstName}}
+        </td>
+        <td>
+          {{richiesta.appuntamento?.orario}}
+        </td>
+        <td>
+          {{richiesta.nuovoOrario}}
+        </td>
+        <td>
+          {{richiesta.appuntamento?.data}}
+        </td>
+        <td>
+          {{richiesta.nuovaData}}
+        </td>
+        <td>
+          <button class="btn bg-primary" (click)="invioRichiesta(richiesta)" type="button">
+            <i class="fa-solid fa-check"></i>
+          </button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
